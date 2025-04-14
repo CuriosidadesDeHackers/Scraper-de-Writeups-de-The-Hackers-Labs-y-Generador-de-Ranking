@@ -31,8 +31,6 @@ pip install requests beautifulsoup4 tqdm colorama
 Clona este repositorio:
 
 ```bash
-Copiar
-Editar
 git clone https://github.com/tuusuario/thl-ranking.git
 cd thl-ranking
 Ejecuta el script:
@@ -69,3 +67,10 @@ El resultado se ve así en tu navegador:
 🛑 Este script se modifica a sí mismo (script.py) cuando añades nuevas URLs.
 ✅ Si quieres mantener una versión original intacta, haz una copia antes de ejecutarlo.
 🔁 Toda URL añadida se guarda dentro del propio script, en el diccionario urls.
+
+---
+
+👤 Autor
+Creado con pasión por [CuriosidadesDeHackers](https://www.curiosidadesdehackers.com/)
+Si te ha servido, ¡dale una estrella en GitHub ⭐ o comparte con la comunidad!
+Contribuciones, pull requests o sugerencias son siempre bienvenidas. 😄
