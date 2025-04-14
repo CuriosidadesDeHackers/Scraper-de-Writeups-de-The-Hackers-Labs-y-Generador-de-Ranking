@@ -64,13 +64,13 @@ El resultado se ve así en tu navegador:
 ---
 
 ## ⚠️ Advertencia importante
-🛑 Este script se modifica a sí mismo (script.py) cuando añades nuevas URLs.
+> 🛑 Este script se modifica a sí mismo (script.py) cuando añades nuevas URLs.
 ✅ Si quieres mantener una versión original intacta, haz una copia antes de ejecutarlo.
 🔁 Toda URL añadida se guarda dentro del propio script, en el diccionario urls.
 
 ---
 
 👤 Autor
-Creado con pasión por [CuriosidadesDeHackers](https://www.curiosidadesdehackers.com/)
+> Creado con pasión por [CuriosidadesDeHackers](https://www.curiosidadesdehackers.com/)
 Si te ha servido, ¡dale una estrella en GitHub ⭐ o comparte con la comunidad!
 Contribuciones, pull requests o sugerencias son siempre bienvenidas. 😄
