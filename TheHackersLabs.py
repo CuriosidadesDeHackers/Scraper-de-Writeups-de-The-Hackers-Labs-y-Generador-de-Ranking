@@ -10,8 +10,8 @@ init(autoreset=True)
 
 # === Diccionario de URLs con puntuaciones
 urls = {
-    "https.//thehackerslabs.com": 6,
-    "https.//thehackerslabs.com": 5,
+    "https://thehackerslabs.com/": 2,
+ 
 }
 
 # === Pedir nuevas URLs
@@ -37,10 +37,13 @@ def obtener_nombres_writeups(url):
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
             bloques = soup.find_all('div', class_='wp-block-kenta-blocks-paragraph')
-            nombres = []
+            nombres = set()  # Usar un conjunto para evitar duplicados
             for bloque in bloques:
-                nombres.extend([kbd.get_text(strip=True) for kbd in bloque.find_all('kbd')])
-            return nombres
+                # Extraer nombres de etiquetas <kbd>
+                nombres.update([kbd.get_text(strip=True) for kbd in bloque.find_all('kbd')])
+                # Extraer nombres de etiquetas <a>
+                nombres.update([a.get_text(strip=True) for a in bloque.find_all('a')])
+            return list(nombres)  # Convertir el conjunto a una lista
     except:
         pass
     return []
@@ -58,6 +61,7 @@ def calcular_puntuaciones(urls):
 
 # === Generar HTML
 def generar_html(puntuaciones):
+    # Cabecera del HTML original
     html = """<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -71,34 +75,42 @@ def generar_html(puntuaciones):
             background-color: black;
             color: white;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            table-layout: fixed;
+            table-layout: fixed; /* Las columnas tienen un ancho fijo */
         }
+
         th, td {
             border: 1px solid #ff6900;
             padding: 8px;
             text-align: center;
-            word-wrap: break-word;
+            word-wrap: break-word; /* Ajusta texto largo */
         }
+
         th {
             background-color: #ff6900;
             color: #000000;
         }
+
         tr:nth-child(even) {
             background-color: black;
         }
+
         tr:nth-child(odd) {
             background-color: black;
         }
+
+        /* Estilo para pantallas pequeñas */
         @media (max-width: 768px) {
             th, td {
-                font-size: 12px;
-                padding: 4px;
+                font-size: 12px; /* Reduce el tamaño del texto */
+                padding: 4px; /* Reduce el relleno de las celdas */
             }
+
             table {
-                font-size: 12px;
+                font-size: 12px; /* Reduce el tamaño general */
             }
         }
     </style>
@@ -107,27 +119,33 @@ def generar_html(puntuaciones):
     <table>
         <thead>
             <tr>
-                <th>POSICIÓN</th>
                 <th>USUARIO</th>
+                <th>POSICIÓN</th>
                 <th>PUNTUACIÓN</th>
             </tr>
         </thead>
         <tbody>
 """
+
+    # Generar filas para cada creador y su puntuación
     for idx, (nombre, puntuacion) in enumerate(puntuaciones, start=1):
+        # Agregar medallas a los tres primeros
         if idx == 1:
             nombre = f"🥇{nombre}"
         elif idx == 2:
             nombre = f"🥈{nombre}"
         elif idx == 3:
             nombre = f"🥉{nombre}"
+
         html += f"""
             <tr>
-                <td>{idx}</td>
                 <td>{nombre}</td>
+                <td>{idx}</td>
                 <td>{puntuacion}</td>
             </tr>
         """
+
+    # Cierre del HTML
     html += """
         </tbody>
     </table>
