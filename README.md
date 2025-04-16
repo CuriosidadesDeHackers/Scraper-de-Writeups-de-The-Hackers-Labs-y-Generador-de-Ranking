@@ -1,3 +1,8 @@
+<a href='https://ko-fi.com/O4O3W3IIA' target='_blank'>
+  <img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+</a>
+
+
 # 🧠 Scraper de Writeups de THL y Generador de Ranking
 
 Este script en Python automatiza la recolección de usuarios que han resuelto retos en los laboratorios de [TheHackersLabs](https://thehackerslabs.com), genera un **ranking con puntuaciones**, y crea un **HTML visual y elegante** con los resultados.
